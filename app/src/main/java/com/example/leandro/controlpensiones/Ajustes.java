@@ -94,11 +94,12 @@ public class Ajustes extends AppCompatActivity {
                                 p.rsocial = jsonObject.getString("rsocial");
                                 p.rut = jsonObject.getString("rut");
                                 p.id_servicio = jsonObject.getString("servicios_id");
+                                p.nameservice= jsonObject.getString("nameservice");
                                 p.desde = jsonObject.getString("desde");
                                 p.hasta = jsonObject.getString("hasta");
 
 
-                                myDB.InsertarPension(p.id,p.rsocial,p.rut,p.id_servicio,p.desde,p.hasta);
+                                myDB.InsertarPension(p.id,p.rsocial,p.rut,p.id_servicio,p.nameservice,p.desde,p.hasta);
 
 
                             }

@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 public void ejecutar() {
 
     try {
-        Thread.sleep(600000);
+        Thread.sleep(10000);
         actualizaciontrabajadores();
         EnviodeDatos();
     }catch (InterruptedException e){

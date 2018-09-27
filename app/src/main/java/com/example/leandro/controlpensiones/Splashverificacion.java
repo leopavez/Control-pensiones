@@ -83,9 +83,12 @@ public class Splashverificacion extends AppCompatActivity {
 
                     int flag=0;
 
-                    Cursor cursor = db.rawQuery("SELECT id FROM trabajador WHERE rut='"+rut+"'",null);
+                    Cursor cursor = db.rawQuery("SELECT id,nombre,apellido FROM trabajador WHERE rut='"+rut+"'",null);
                     if (cursor.moveToFirst()==true){
                         String trabajadorid = cursor.getString(0);
+                        String nombretrabajador = cursor.getString(1);
+                        String apellidotrabajador = cursor.getString(2);
+                        String nombre = nombretrabajador+ " "+apellidotrabajador;
                             Cursor cursor1 = db.rawQuery("SELECT id_servicio FROM pension",null);
                             for (cursor1.moveToFirst(); !cursor1.isAfterLast(); cursor1.moveToNext()){
                                 String idservicio=cursor1.getString(0);
@@ -133,16 +136,23 @@ public class Splashverificacion extends AppCompatActivity {
                             if(flag!=0){
 
 
-                                Cursor cursor3 = db.rawQuery("SELECT id_pension, id_servicio FROM pension WHERE id_servicio='"+flag+"'",null);
-
+                                Cursor cursor3 = db.rawQuery("SELECT id_pension, id_servicio,nameservice FROM pension WHERE id_servicio='"+flag+"'",null);
                                     if (cursor3.moveToFirst()==true){
                                         try {
-                                            ma.imprimir();
+
                                             String id_pension = cursor3.getString(0);
                                             String idservicio = cursor3.getString(1);
+                                            String nameservice = cursor3.getString(2);
                                             myDB.InsertarRegistro(trabajadorid,id_pension,idservicio,hora,fecha,"PENDIENTE");
-                                            progress.setVisibility(View.INVISIBLE);
-                                            tickverificacion.setVisibility(View.VISIBLE);
+
+                                            Cursor cursor4 = db.rawQuery("SELECT id FROM registro ORDER BY id DESC LIMIT 1",null);
+                                            if (cursor4.moveToFirst()==true){
+                                                String nvale = cursor4.getString(0);
+                                                ma.imprimir(nvale,nameservice,nombre);
+                                                progress.setVisibility(View.INVISIBLE);
+                                                tickverificacion.setVisibility(View.VISIBLE);
+
+                                            }
 
                                         } catch (Exception e) {
                                             e.printStackTrace();

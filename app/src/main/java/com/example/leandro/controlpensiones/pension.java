@@ -6,6 +6,7 @@ public class pension {
     String rsocial;
     String rut;
     String id_servicio;
+    String nameservice;
     String desde;
     String hasta;
 
@@ -13,11 +14,12 @@ public class pension {
 
     }
 
-    public pension(String id, String rsocial, String rut, String id_servicio, String desde, String hasta) {
+    public pension(String id, String rsocial, String rut, String id_servicio, String nameservice, String desde, String hasta) {
         this.id = id;
         this.rsocial = rsocial;
         this.rut = rut;
         this.id_servicio = id_servicio;
+        this.nameservice = nameservice;
         this.desde = desde;
         this.hasta = hasta;
     }
@@ -54,6 +56,14 @@ public class pension {
         this.id_servicio = id_servicio;
     }
 
+    public String getNameservice() {
+        return nameservice;
+    }
+
+    public void setNameservice(String nameservice) {
+        this.nameservice = nameservice;
+    }
+
     public String getDesde() {
         return desde;
     }
@@ -68,10 +78,5 @@ public class pension {
 
     public void setHasta(String hasta) {
         this.hasta = hasta;
-    }
-
-    @Override
-    public String toString() {
-        return rsocial+id;
     }
 }

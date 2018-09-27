@@ -30,12 +30,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String RAZON_SOCIAL="rsocial";
     public static final String RUT_PENSION="rut";
     public static final String ID_SERVICIO="id_servicio";
+    public static final String NAMESERVICE="nameservice";
     public static final String DESDE="desde";
     public static final String HASTA="hasta";
 
 
     final String CREAR_TABLA_TRABAJADOR="CREATE TABLE trabajador (id INTEGER unique, nombre TEXT, apellido TEXT, rut TEXT, pass TEXT, estado TEXT)";
-    final String CREAR_TABLA_SERVICIOS="CREATE TABLE pension (id_pension INTEGER, rsocial TEXT, rut TEXT, id_servicio TEXT, desde TEXT, hasta TEXT)";
+    final String CREAR_TABLA_SERVICIOS="CREATE TABLE pension (id_pension INTEGER, rsocial TEXT, rut TEXT, id_servicio TEXT,nameservice TEXT, desde TEXT, hasta TEXT)";
     final String CREAR_TABLA_REGISTRO="CREATE TABLE registro (id INTEGER PRIMARY KEY AUTOINCREMENT, trabajador_id TEXT, pension_id TEXT, servicio_id TEXT, hora TEXT, fecha TEXT, estado TEXT)";
 
     public DatabaseHelper(Context context) {
@@ -60,18 +61,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREAR_TABLA_TRABAJADOR);
         db.execSQL(CREAR_TABLA_SERVICIOS);
         db.execSQL(CREAR_TABLA_REGISTRO);
-    }
-
-    public boolean eliminardatos(){
-        try{
-
-            SQLiteDatabase db = this.getWritableDatabase();
-            db.delete("listado","1",null);
-            return true;
-        }catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
     }
 
     public boolean InsertarTrabajador(String id, String nombre, String apellido, String rut, String pass, String estado) {
@@ -112,7 +101,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put(ESTADO_REGISTRO,estado);
 
             db.insert("registro",null,contentValues);
-            db.close();
             return true;
         }catch(Exception exp){
             exp.printStackTrace();
@@ -121,7 +109,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean InsertarPension(String id_pension, String rsocial, String rut, String id_servicio, String desde, String hasta){
+    public boolean InsertarPension(String id_pension, String rsocial, String rut, String id_servicio,String nameservice, String desde, String hasta){
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -130,6 +118,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put(RAZON_SOCIAL, rsocial);
             contentValues.put(RUT_PENSION, rut);
             contentValues.put(ID_SERVICIO, id_servicio);
+            contentValues.put(NAMESERVICE,nameservice);
             contentValues.put(DESDE, desde);
             contentValues.put(HASTA, hasta);
 

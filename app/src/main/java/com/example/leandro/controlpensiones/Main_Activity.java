@@ -130,7 +130,7 @@ public class Main_Activity extends Activity implements Runnable {
         }
     }
 
-    public void imprimir() throws Exception{
+    public void imprimir(String nvale, String tiposervicio, String ntrabajador) throws Exception{
 
         try {
 
@@ -164,6 +164,9 @@ public class Main_Activity extends Activity implements Runnable {
             String msg2 = " "+" "+" Ingenieria y Construcciones "+" "+"\n"+
                     " " + " "+" "+""+" "+" " +" "+" "+" "+" Santa Fe S.A"+" "+"\n"+
                     " " +"\n"+
+                    " " + "N vale: "+nvale+"\n"+
+                    " " + "Trabajador: "+ntrabajador+"\n"+
+                    " " + "Servicio: "+tiposervicio+"\n"+
                     " " + "Fecha: "+fecha+"\n"+
                     " " + "Hora: "+hora+"\n"+
                     " " +"\n"+
